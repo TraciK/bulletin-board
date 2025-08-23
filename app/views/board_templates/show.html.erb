@@ -5,3 +5,28 @@
 <% the_board = matching_boards.at(0)%>
 
 <h1><%= the_board.name%></h1>
+<%= all_listings = Listing.where({ :board_id => the_id })%>
+
+<% active_listings = all_listings.where({ :expires_on => (Date.today...)}) %>
+
+<h2>Active listing</h2>
+
+<% active_listings.each do |a_listing| %>
+  <li>
+  <%= a_listing.title %>
+
+  (<%= a_listing.expires_on %>)
+  </li>
+<% end %>
+
+<h2>Expired listings</h2>
+
+<%= expired_listings = all_listings.where({ :expires_on => (...Date.today) }) %>
+
+<% expired_listings.each do |a_listing| %>
+  <li>
+  <%= a_listing.title %>
+
+  (<%= a_listing.expires_on %>)
+  </li>
+<% end %>
