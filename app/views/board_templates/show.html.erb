@@ -1,4 +1,3 @@
-
 <% the_id = params.fetch("path_id") %>
 
 <% matching_boards = Board.where({ :id => the_id})%>
@@ -7,8 +6,8 @@
 
 <nav aria-label="breadcrumb">
   <ul>
-  <li><a href="/">Home</a></li> 
-  <li><%= the_board.name %></li>
+    <li><a href="/">Home</a></li> 
+    <li><%= the_board.name %></li>
   </ul>
 </nav>
 
@@ -53,15 +52,21 @@
   </div>
 </article>
 
-<% active_listings.each do |a_listing| %>
-  <li>
-    <%= a_listing.title %>
+<article>
+  <header>Add a new listing</header>
 
-    (<%= a_listing.expires_on %>)
-  </li>
-<% end %>
+  <form action="/insert_listing" method="post">
+  <label for="title_field">Title</label>
+  <input id="title_field" type="text" name="title_param">
 
-<h2>Expired listings</h2>
+  <label for="body_field">Body</label>
+  <textarea id="body_field" name="body_param"></textarea>
+
+  <label for="expires_on_field">Expires on</label>
+  <input id="expires_on_field" type="date" name="expires_on_param">
+  <button>Create listing</button>
+  </form>
+</article>
 
 <% expired_listings = all_listings.where({ :expires_on => (...Date.today) }) %>
 
