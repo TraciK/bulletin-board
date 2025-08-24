@@ -1,3 +1,4 @@
+
 <% the_id = params.fetch("path_id") %>
 
 <% matching_boards = Board.where({ :id => the_id})%>
@@ -62,7 +63,7 @@
 
 <h2>Expired listings</h2>
 
-<%= expired_listings = all_listings.where({ :expires_on => (...Date.today) }) %>
+<% expired_listings = all_listings.where({ :expires_on => (...Date.today) }) %>
 
 <article>
   <header>
